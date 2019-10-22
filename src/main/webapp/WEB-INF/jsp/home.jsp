@@ -157,7 +157,7 @@
                 <b class="arrow"></b>
                 <ul class="submenu">
                     <li class="">
-                        <a href="${ctx}/user/list" class="J_menuItem">
+                        <a href="${ctx}/bs/information/show/list" class="J_menuItem">
                             <i class="menu-icon fa fa-caret-right"></i>
                             库存列表
                         </a>
@@ -204,7 +204,7 @@
         </ul>
         <div class="page-content">
             <div class="row J_mainContent" id="content-main">
-                <iframe onload="changeFrameHeight()" id="J_iframe" class="J_iframe" name="iframe0" width="100%" height="100%" src="" frameborder="0" data-id="index_v1.html" seamless></iframe>
+                <iframe onload="iframeChange()" id="J_iframe" class="J_iframe" name="iframe0" width="100%" height="100%" src="" frameborder="0" data-id="index_v1.html" seamless></iframe>
             </div>
         </div>
     </div>
@@ -215,10 +215,10 @@
 </div>
 <script type="text/javascript">
     $(function(){
-        changeFrameHeight();
+        iframeChange();
     });
 
-    function changeFrameHeight(){
+    function iframeChange(){
         var ifmHeight = document.documentElement.clientHeight - 130;
         $(".main-content").css("height",ifmHeight);
 

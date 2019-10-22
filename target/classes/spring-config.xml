@@ -38,11 +38,13 @@
     <!-- 让Spring通过自动扫描来查询和管理Bean -->
     <context:component-scan base-package="AssAdmin"/>
 
+    <mvc:annotation-driven/>
+
     <!-- spring和MyBatis完美整合，不需要mybatis的配置映射文件 -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mapper-config.xml"/>
-        <property name="mapperLocations" value="classpath*:AssAdmin/mapper/**"/>
+        <property name="mapperLocations" value="classpath:AssAdmin/mapper/**/*.xml"/>
     </bean>
 
 
@@ -58,8 +60,6 @@
         <property name="annotationClass" value="org.springframework.stereotype.Repository"/>
     </bean>
 
-
-    <mvc:annotation-driven/>
     <mvc:resources location="/WEB-INF/js/" mapping="/js/**" />
     <mvc:resources location="/WEB-INF/css/" mapping="/css/**" />
     <mvc:resources location="/WEB-INF/fonts/" mapping="/fonts/**" />

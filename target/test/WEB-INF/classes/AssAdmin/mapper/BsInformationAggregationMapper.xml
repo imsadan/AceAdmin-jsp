@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="AssAdmin.mapper.BsInformationAggregationMapper" >
+  <resultMap id="BsInformationAggregationResultMap" type="AssAdmin.domain.BsInformationAggregation" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="product_name" property="productName" jdbcType="VARCHAR" />
+    <result column="product_model" property="productModel" jdbcType="VARCHAR" />
+    <result column="product_company" property="productCompany" jdbcType="VARCHAR" />
+    <result column="information_input_id" property="informationInputId" jdbcType="BIGINT" />
+    <result column="recorder" property="recorder" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="unit_price" property="unitPrice" jdbcType="VARCHAR" />
+    <result column="units" property="units" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="BIGINT" />
+    <result column="brandss" property="brandss" jdbcType="VARCHAR" />
+    <result column="reference_price_desc" property="referencePriceDesc" jdbcType="VARCHAR" />
+  </resultMap>
+  <delete id="delete" parameterType="java.lang.Long" >
+    delete from bs_information_aggregation
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="csc.hfz.domain.BsInformationAggregation" useGeneratedKeys="true" keyProperty="id">
+    insert into bs_information_aggregation 
+     (
+      product_name,
+      product_model, 
+      product_company,
+      information_input_id,
+      recorder, 
+      create_time,
+      update_time,
+      description, 
+      unit_price,
+      units, 
+      number, 
+      brands,
+      reference_price_desc)
+    values 
+     (
+      #{productName,jdbcType=VARCHAR},
+      #{productModel,jdbcType=VARCHAR}, 
+      #{productCompany,jdbcType=VARCHAR}, 
+      #{informationInputId,jdbcType=BIGINT}, 
+      #{recorder,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, 
+      #{updateTime,jdbcType=TIMESTAMP}, 
+      #{description,jdbcType=VARCHAR}, 
+      #{unitPrice,jdbcType=VARCHAR}, 
+      #{units,jdbcType=VARCHAR}, 
+      #{number,jdbcType=BIGINT}, 
+      #{brands,jdbcType=VARCHAR}, 
+      #{referencePriceDesc,jdbcType=VARCHAR})
+  </insert>
+  <update id="update" parameterType="csc.hfz.domain.BsInformationAggregation" >
+    update bs_information_aggregation
+    set 
+      product_name = #{productName,jdbcType=VARCHAR},
+      product_model = #{productModel,jdbcType=VARCHAR},
+      product_company = #{productCompany,jdbcType=VARCHAR},
+      information_input_id = #{informationInputId,jdbcType=BIGINT},
+      recorder = #{recorder,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=VARCHAR},
+      units = #{units,jdbcType=VARCHAR},
+      number = #{number,jdbcType=BIGINT},
+      brands = #{brands,jdbcType=VARCHAR},
+      reference_price_desc = #{referencePriceDesc,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="get" resultMap="BsInformationAggregationResultMap" parameterType="java.lang.Long" >
+    select 
+    *
+    from bs_information_aggregation
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  
+  <select id="ListByBatchId" resultMap="BsInformationAggregationResultMap" parameterType="java.lang.Long" >
+    select 
+    *
+    from bs_information_aggregation
+    where information_input_id = #{informationInputId,jdbcType=BIGINT}
+  </select>  
+  
+  <select id="listByInformationInputId" resultMap="BsInformationAggregationResultMap">
+    select 
+    *
+    from bs_information_aggregation
+    where information_input_id = #{informationInputId,jdbcType=BIGINT}
+    limit #{start},#{size}
+  </select>  
+  
+  <select id="findByProductNameAndModel" resultMap="BsInformationAggregationResultMap">
+    select 
+    *
+    from bs_information_aggregation
+    where product_name = #{productName,jdbcType=VARCHAR} AND product_model = #{productModel,jdbcType=VARCHAR} AND product_company = #{productCompany,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="countByInformationInputId" resultType="int" >
+      select count(*) 
+      from bs_information_aggregation
+   </select>  
+   
+  <select id="selectAll" parameterType="csc.hfz.mapper.BsInformationAggregationGridQueryParam" resultMap="BsInformationAggregationResultMap" >
+    SELECT 
+    *
+    FROM bs_information_aggregation bia
+    <trim prefix="WHERE" prefixOverrides="AND">
+		<if test="params != null and params != ''">
+		    AND (bia.product_name LIKE concat(concat('%', #{params}), '%') OR bia.product_model LIKE concat(concat('%', #{params}), '%') OR bia.product_company LIKE concat(concat('%', #{params}), '%'))
+		</if>    
+    </trim>
+    ORDER BY ${sort} ${order}
+    limit #{start},#{size}
+  </select>
+  
+   <select id="countAll" parameterType="csc.hfz.mapper.BsInformationAggregationGridQueryParam" resultType="int" >
+    SELECT 
+    count(*)
+    FROM bs_information_aggregation bia
+    <trim prefix="WHERE" prefixOverrides="AND">
+		<if test="params != null and params != ''">
+		    AND (bia.product_name LIKE concat(concat('%', #{params}), '%') OR bia.product_model LIKE concat(concat('%', #{params}), '%') OR bia.product_company LIKE concat(concat('%', #{params}), '%'))
+		</if>    
+    </trim>
+   </select> 
+  
+</mapper>
