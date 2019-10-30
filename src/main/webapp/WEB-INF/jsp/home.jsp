@@ -116,7 +116,7 @@
             try{ace.settings.loadState('sidebar')}catch(e){}
         </script>
         <ul class="nav nav-list">
-            <li class="active open">
+            <li class="">
                 <a href="javascript:;" class="dropdown-toggle">
                     <i class="menu-icon fa fa-list"></i>
                     <span class="menu-text">用户列表</span>
@@ -124,7 +124,7 @@
                 </a>
                 <b class="arrow"></b>
                 <ul class="submenu">
-                    <li class="active">
+                    <li class="">
                         <a href="${ctx}/user/list" class="J_menuItem">
                             <i class="menu-icon fa fa-caret-right"></i>
                            人员信息
@@ -164,7 +164,7 @@
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="${ctx}/user/list" class="J_menuItem">
+                        <a href="${ctx}/bs/information/show/jq" class="J_menuItem">
                             <i class="menu-icon fa fa-caret-right"></i>
                             出入库日志记录
                         </a>

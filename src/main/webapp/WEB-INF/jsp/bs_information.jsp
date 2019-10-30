@@ -13,10 +13,20 @@
 <html>
 <head>
     <title>仓库</title>
+   <style type="text/css">
+      #grid_list{
+         text-align: center;
+      }
+   </style>
 </head>
 <body>
-   <table id="grid_list"></table>
-   <div id="grid_list_page" style="width: 100%"></div>
+   <div class="col-xs-12">
+      <div style="padding-top: 20px;">
+         <table id="grid_list"></table>
+         <div id="grid_list_page" style="width: 100%"></div>
+      </div>
+   </div>
+
 
 
    <script src="${ctx}/js/jquery.jqGrid.min.js"></script>
@@ -24,15 +34,18 @@
        $("#grid_list").jqGrid({
            url:'${ctx}/bs/information/data',
            datatype: "json",
+           regional : 'cn',
            colNames:['序号','产品名称', '产品型号','数量','记录时间'],
            colModel:[
                {name:'id',index:'id', width:55},
-               {name:'productName',index:'productName', width:90,sort:true},
-               {name:'productMode',index:'productMode', width:100,sort:true},
+               {name:'productName',index:'productName', width:200,sort:true},
+               {name:'productModel',index:'productModel', width:200,sort:true},
                {name:'number',index:'number', width:100,sort:true},
-               {name:'updateTime',index:'updateTime', width:100,sort:true}
+               {name:'updateTime',index:'updateTime', width:150,sort:true}
            ],
-           caption:"仓储",
+           width:'100%',
+           autowidth:true,
+           height:'100%',
            pager:"#grid_list_page",
            rowNum:20,
            rowList:[20,30,50],
@@ -42,8 +55,10 @@
                page:"currPage",
                total:"totalPages",
                records:"totalCount",
-               repeatitems: true,      // 如果设为false，则jqGrid在解析json时，会根据name来搜索对应的数据元素（即可以json中元素可以不按顺序）；而所使用的name是来自于colModel中的name设定。
-           }
+               repeatitems: true,      //如果设为false，则jqGrid在解析json时，会根据name来搜索对应的数据元素（即可以json中元素可以不按顺序）；而所使用的name是来自于colModel中的name设定。
+           },
+           multiselect: true, //是否支持多选
+           altRows: true,//隔行换色
        });
    </script>
 

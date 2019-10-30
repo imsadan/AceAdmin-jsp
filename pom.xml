@@ -17,7 +17,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <spring.version>3.1.0.RELEASE</spring.version>
+    <spring.version>4.3.7.RELEASE</spring.version>
   </properties>
 
   <dependencies>
@@ -205,13 +205,8 @@
       <version>1.3.2</version>
     </dependency>
 
-    <dependency>
-      <groupId>commons-fileupload</groupId>
-      <artifactId>commons-fileupload</artifactId>
-    </dependency>
-
-
   </dependencies>
+
 
   <build>
     <finalName>test</finalName>
@@ -248,5 +243,17 @@
         </plugin>
       </plugins>
     </pluginManagement>
+
+      <resources>
+        <resource>
+          <directory>src/main/java</directory>
+          <includes>
+            <include>**/*.properties</include>
+            <include>**/*.xml</include>
+          </includes>
+          <filtering>false</filtering>
+        </resource>
+      </resources>
+
   </build>
 </project>

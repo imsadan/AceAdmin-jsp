@@ -1,0 +1,9 @@
+AssAdmin\common\PageInfo.class
+AssAdmin\controller\homeController.class
+AssAdmin\common\JsonDateSerializer.class
+AssAdmin\common\ResultMap.class
+AssAdmin\mapper\BsInformationAggregation\BsInformationAggregationMapper.class
+AssAdmin\mapper\BsInformationAggregation\BsInformationAggregationGridQueryParam.class
+AssAdmin\common\GridQueryParam.class
+AssAdmin\controller\BsInformationController\BsInformationController.class
+AssAdmin\domain\BsInformationAggregation.class

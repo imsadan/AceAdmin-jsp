@@ -19,6 +19,7 @@
         <script type="text/javascript" src="${ctx}/js/ace-elements.min.js?${static_version}"></script>
         <script type="text/javascript" src="${ctx}/js/ace.min.js?${static_version}"></script>
         <script type="text/javascript" src="${ctx}/js/contabs.js?${static_version}"></script>
+        <script type="text/javascript" src="${ctx}/js/grid.locale-cn.js?${static_version}"></script>
         <sitemesh:head/>
     </head>
     <body class="no-skin">

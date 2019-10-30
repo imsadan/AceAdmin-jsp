@@ -108,7 +108,6 @@ public class BsInformationAggregation {
         this.description = description == null ? null : description.trim();
     }
 
-   
 
     public String getUnitPrice() {
         return unitPrice;

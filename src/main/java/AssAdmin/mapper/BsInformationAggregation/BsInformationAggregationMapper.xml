@@ -14,7 +14,7 @@
     <result column="unit_price" property="unitPrice" jdbcType="VARCHAR" />
     <result column="units" property="units" jdbcType="VARCHAR" />
     <result column="number" property="number" jdbcType="BIGINT" />
-    <result column="brandss" property="brandss" jdbcType="VARCHAR" />
+    <result column="brands" property="brands" jdbcType="VARCHAR" />
     <result column="reference_price_desc" property="referencePriceDesc" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="delete" parameterType="java.lang.Long" >
@@ -112,7 +112,13 @@
     <trim prefix="WHERE" prefixOverrides="AND">
 		<if test="params != null and params != ''">
 		    AND (bia.product_name LIKE concat(concat('%', #{params}), '%') OR bia.product_model LIKE concat(concat('%', #{params}), '%') OR bia.product_company LIKE concat(concat('%', #{params}), '%'))
-		</if>    
+		</if>
+        <if test="searchName != null and searchName != ''">
+           AND bia.product_name LIKE concat(concat('%', #{searchName}), '%')
+        </if>
+        <if test="searchModel != null and searchModel != ''">
+          AND bia.product_model LIKE concat(concat('%', #{searchModel}), '%')
+        </if>
     </trim>
     ORDER BY ${sort} ${order}
     limit #{start},#{size}

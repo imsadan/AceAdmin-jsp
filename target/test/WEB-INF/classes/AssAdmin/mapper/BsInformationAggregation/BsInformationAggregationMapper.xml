@@ -14,14 +14,14 @@
     <result column="unit_price" property="unitPrice" jdbcType="VARCHAR" />
     <result column="units" property="units" jdbcType="VARCHAR" />
     <result column="number" property="number" jdbcType="BIGINT" />
-    <result column="brandss" property="brandss" jdbcType="VARCHAR" />
+    <result column="brands" property="brands" jdbcType="VARCHAR" />
     <result column="reference_price_desc" property="referencePriceDesc" jdbcType="VARCHAR" />
   </resultMap>
   <delete id="delete" parameterType="java.lang.Long" >
     delete from bs_information_aggregation
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="csc.hfz.domain.BsInformationAggregation" useGeneratedKeys="true" keyProperty="id">
+  <insert id="insert" parameterType="AssAdmin.domain.BsInformationAggregation" useGeneratedKeys="true" keyProperty="id">
     insert into bs_information_aggregation 
      (
       product_name,
@@ -53,7 +53,7 @@
       #{brands,jdbcType=VARCHAR}, 
       #{referencePriceDesc,jdbcType=VARCHAR})
   </insert>
-  <update id="update" parameterType="csc.hfz.domain.BsInformationAggregation" >
+  <update id="update" parameterType="AssAdmin.domain.BsInformationAggregation" >
     update bs_information_aggregation
     set 
       product_name = #{productName,jdbcType=VARCHAR},
@@ -105,20 +105,26 @@
       from bs_information_aggregation
    </select>  
    
-  <select id="selectAll" parameterType="csc.hfz.mapper.BsInformationAggregationGridQueryParam" resultMap="BsInformationAggregationResultMap" >
+  <select id="selectAll" parameterType="AssAdmin.mapper.BsInformationAggregation.BsInformationAggregationGridQueryParam" resultMap="BsInformationAggregationResultMap" >
     SELECT 
     *
     FROM bs_information_aggregation bia
     <trim prefix="WHERE" prefixOverrides="AND">
 		<if test="params != null and params != ''">
 		    AND (bia.product_name LIKE concat(concat('%', #{params}), '%') OR bia.product_model LIKE concat(concat('%', #{params}), '%') OR bia.product_company LIKE concat(concat('%', #{params}), '%'))
-		</if>    
+		</if>
+        <if test="searchName != null and searchName != ''">
+           AND bia.product_name LIKE concat(concat('%', #{searchName}), '%')
+        </if>
+        <if test="searchModel != null and searchModel != ''">
+          AND bia.product_model LIKE concat(concat('%', #{searchModel}), '%')
+        </if>
     </trim>
     ORDER BY ${sort} ${order}
     limit #{start},#{size}
   </select>
   
-   <select id="countAll" parameterType="csc.hfz.mapper.BsInformationAggregationGridQueryParam" resultType="int" >
+   <select id="countAll" parameterType="AssAdmin.mapper.BsInformationAggregation.BsInformationAggregationGridQueryParam" resultType="int" >
     SELECT 
     count(*)
     FROM bs_information_aggregation bia
