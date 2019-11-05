@@ -171,7 +171,7 @@
                         <b class="arrow"></b>
                     </li>
                     <li class="">
-                        <a href="${ctx}/user/list" class="J_menuItem">
+                        <a href="${ctx}/bs/information/add/goods/page" class="J_menuItem">
                             <i class="menu-icon fa fa-caret-right"></i>
                             入库
                         </a>

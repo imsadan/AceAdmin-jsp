@@ -86,4 +86,11 @@ public class BsInformationController {
 
         return pageInfo;
     }
+
+    @RequestMapping("/add/goods/page")
+    public ModelAndView addGoodsPage(){
+        ModelAndView model = new ModelAndView();
+        model.setViewName("bs_add_form");
+        return  model;
+    }
 }

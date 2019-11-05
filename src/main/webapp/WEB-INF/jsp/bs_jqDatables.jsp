@@ -66,7 +66,7 @@
                     "sTitle": "记录时间","mDataProp":"updateTime",
                     "sClass": "center"
                 },
-                {"sTitle": "操作","data":null,"sClass": "center","render":function (data,type,row,meta) {
+                {"sTitle": "操作","data":null,"sClass": "center","bSortable":false,"render":function (data,type,row,meta) {
                     var html="";
                     html +='<div class="btn-group btn-corner">';
                     html +='<button class="btn btn-sm btn-success" onclick="showTb('+row.id+')"><i class="ace-icon fa fa-pencil-square-o"></i>查看原单</button>';
@@ -147,6 +147,7 @@
         //删除
         function deleteTb(temp){
 
+            console.log($(this))
             $( "#dialog-confirm" ).removeClass('hide').dialog({
                 resizable: false,
                 width: '320',
